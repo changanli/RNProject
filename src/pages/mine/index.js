@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
     },
     flatlist:{
         flex:1,
-        width: Constants.screenWidth
+        width: Constants.screen.width
     },
     listItem:{
         flex:1,
