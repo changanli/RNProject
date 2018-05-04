@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     btn:{
-        color:Constants.themeColor,
+        color:Constants.color.themeColor,
         fontSize:20,
         position:'absolute'
     },
@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
     listItemLeftImage:{
         left:10,
         position:'absolute',
-        tintColor:Constants.themeColor
+        tintColor:Constants.color.themeColor
     },
     title:{
         color:'#323232',

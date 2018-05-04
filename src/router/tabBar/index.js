@@ -55,7 +55,7 @@ const TabBar = TabNavigator(
     },
     {
       tabBarOptions: {
-        activeTintColor: Constants.themeColor, //渲染选中的颜色
+        activeTintColor: Constants.color.themeColor, //渲染选中的颜色
         // inactiveTintColor: 'gray', //渲染未选中的颜色
       },
       tabBarPosition:'bottom', //TabBar在底部

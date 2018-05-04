@@ -28,7 +28,7 @@ const Router = StackNavigator({
   {
     headerMode:'screen',
     navigationOptions:{
-        headerStyle:{backgroundColor:Constants.themeColor}, //统一设置导航栏背景色为红色
+        headerStyle:{backgroundColor:Constants.color.themeColor}, //统一设置导航栏背景色为红色
         headerTintColor:'white', //统一设置导航栏标题为白色
     }
   },

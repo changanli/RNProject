@@ -37,15 +37,15 @@ const styles = StyleSheet.create({
     input:{
         marginTop:20,
         backgroundColor:'white',
-        width:Constants.screenWidth*0.8,
+        width:Constants.screen.width*0.8,
         height:200
     },
     submit:{
         marginTop:20,
-        width:Constants.screenWidth*0.8,
+        width:Constants.screen.width*0.8,
         height:45,
-        color:Constants.themeColor,
-        borderColor:Constants.themeColor,
+        color:Constants.color.themeColor,
+        borderColor:Constants.color.themeColor,
         borderWidth:1,
         borderRadius:22.5,
         textAlign:'center',
