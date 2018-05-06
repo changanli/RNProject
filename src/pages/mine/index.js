@@ -23,7 +23,7 @@ export default class Mine extends Component {
         {
         key:'0', //指定section的key,用于区分不同的section
         data:[
-            {key:'0',title:'未登录',subtitle:'点击登录/注册',routeName:'login',image:require('../../static/images/my_feedback_28x28_.png')},
+            {key:'0',title:'未登录',subtitle:'点击登录/注册',routeName:'Login',image:require('../../static/images/my_feedback_28x28_.png')},
         ],
         },
         {   key:'1',
@@ -57,12 +57,12 @@ export default class Mine extends Component {
             title = {info.item.title}
             subtitle={info.item.subtitle}
             leftImage={info.item.image}
-            onPress={()=>this.props.navigation.navigate(info.item.routeName)}
+            onPress={()=>this.props.navigation.navigate(info.item.routeName,{mode:'modal'})}
         />:<ListItemArrow 
                 style={{marginBottom:10}}
                 title={info.item.title}
                 leftImage={info.item.image}
-                onPress={()=>this.props.navigation.navigate(info.item.routeName)} 
+                onPress={()=>this.props.navigation.navigate(info.item.routeName,{mode:'card'})} 
         />)
     }
 }
@@ -83,3 +83,4 @@ const styles = StyleSheet.create({
         width: Constants.screen.width
     }
 });
+

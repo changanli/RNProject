@@ -9,9 +9,9 @@ import {
 import Constants from '../../utils/constants';
 
 export default class FeedBack extends Component {
-    static navigationOptions={
+    static navigationOptions=({navigtaion})=>({
         headerTitle:'反馈意见'
-    }
+    })
     render(){
         return(
         <View style={styles.container}>

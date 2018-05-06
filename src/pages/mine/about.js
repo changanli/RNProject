@@ -8,9 +8,9 @@ import {
 
 export default class About extends Component {
 
-    static navigationOptions={
+    static navigationOptions=({navigation})=>({
         headerTitle:'关于'
-    }
+    })
 
     render(){
         return(

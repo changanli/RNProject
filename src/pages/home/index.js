@@ -20,7 +20,7 @@ export default class Home extends Component {
             <View style={styles.container}>
                 <Text 
                 style={styles.text}
-                onPress={()=>this.props.navigation.navigate('Boy',{words:'你好,Boy!'})}
+                onPress={()=>this.props.navigation.navigate('Boy',{words:'你好,Boy!',mode:'card'})}
                 >首页</Text>
                 <Button
                 title="保存"
