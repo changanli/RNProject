@@ -2,8 +2,16 @@ import React,{Component} from 'react';
 import {
     Text,
     View,
-    Modal
+    Image,
+    StyleSheet,
+    TextInput,
+    TouchableHighlight,
+    Button
 } from 'react-native';
+
+import Constants from '../../utils/constants';
+import SignInputItem from '../../components/signInputItem';
+import RadiusButton from '../../components/radiusButton';
 
 export default class Login extends Component {
     static navigationOptions=({navigation})=>({
@@ -15,10 +23,88 @@ export default class Login extends Component {
          onPress={()=>navigation.goBack()}
          >x</Text>
     })
+    constructor(props){
+        super(props)
+        this.state = {
+            phone:'',
+            password:''
+        }
+    }
     render(){
-        return (<View>
-            <Text>登录注册</Text>
+        return (<View style={styles.container}>
+            <Image style={styles.logo} source={require('../../static/images/logo.png')}/>
+            <SignInputItem
+             leftImage = {require('../../static/images/person.png')}
+             placeholder="请输入手机号码"
+             maxLength={11}
+             autoCorrect={false} 
+             autoFocus={true}
+             keyboardType="numeric"
+             clearButtonMode = {"while-editing"}
+             //
+             onChangeText={(text)=>this.setState({...this.state,phone:text})}
+            />
+            <SignInputItem
+             leftImage = {require('../../static/images/pass.png')}
+             placeholder="请输入验证码"
+             maxLength={18}
+             autoCorrect={false} 
+             autoFocus={true}
+             clearButtonMode = {"while-editing"}
+             onChangeText={(text)=>this.setState({...this.state,password:text})}
+             secureTextEntry={true}
+            />
+           <RadiusButton 
+           title="登 录"
+           viewStyle={styles.viewStyle}
+           textStyle={styles.textStyle}
+           />
+           <Text 
+           style={styles.register}
+           onPress = {()=>this.props.navigation.navigate('Register',{mode:'card'})}
+           >注册</Text>
         </View>)
+    }
+
+    _login(){
+        if(!(/^1[\d]{10}$/g).test(this.state.phone)){
+            console.log('手机号格式不正确')
+            return
+        }
+        if(this.state.password.length < 6 || this.state.password.length > 18){
+            console.log('请输入6-18位的密码');
+            return
+        }
+        console.log('登录');
+        console.log(this.state.password);
+        console.log(this.state.phone)
     }
 }
 
+
+
+const styles = StyleSheet.create({
+    container:{
+        flex:1,
+        alignItems:'center',
+        backgroundColor:'white'
+    },
+    logo:{
+        marginTop:60,
+    },
+    viewStyle:{
+        marginTop:20,
+        width:Constants.screen.width*0.8,
+        height:45,
+        borderRadius:20,
+        backgroundColor:Constants.color.themeColor
+    },
+    textStyle:{
+        color:'white',
+        fontSize:20
+    },
+    register:{
+        marginTop:20,
+        fontWeight:'bold',
+    }
+});

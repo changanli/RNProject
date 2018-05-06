@@ -15,6 +15,7 @@ import TabBar from './tabBar/index'
 import FeedBack from '../pages/mine/feedback'
 import About from '../pages/mine/about'
 import Login from '../pages/sign/login'
+import Register from '../pages/sign/register'
 
 
 /**
@@ -67,6 +68,9 @@ const Router = StackNavigator({
       },
       Login:{
         screen:Login, //登录
+      },
+      Register:{
+        screen:Register
       },
       Boy:{
         screen:Boy

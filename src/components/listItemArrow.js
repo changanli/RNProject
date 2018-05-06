@@ -7,9 +7,19 @@ import {
     StyleSheet
 } from 'react-native';
 
+import propTypes from 'prop-types';
+
 import Constants from '../utils/constants';
 
 export default class ListItemArrow extends Component {
+
+    static propTypes = {
+        onPress:propTypes.func,
+        leftImage:propTypes.number,
+        title:propTypes.string
+
+    }
+
     render(){
         /*
         TouchableHighlight只支持一个子节点

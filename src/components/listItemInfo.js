@@ -8,9 +8,19 @@ TouchableHighlight,
 Image
 } from 'react-native';
 
+import propTypes from 'prop-types';
+
 import Constants from '../utils/constants';
 
 export default class ListItemInfo extends Component {
+
+    static propTypes = {
+        onPress:propTypes.func,
+        leftImage:propTypes.number,
+        title:propTypes.string,
+        subtitle:propTypes.string
+    }
+
     render(){
         return(<TouchableHighlight  //添加点击事件
             style={this.props.style}
