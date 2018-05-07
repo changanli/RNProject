@@ -9,11 +9,16 @@ import {
     Button
 } from 'react-native';
 
+import {connect} from 'react-redux';
+import {login} from '../../redux/actions/user';
+
+import {register} from '../../redux/actions/user';
 import Constants from '../../utils/constants';
 import SignInputItem from '../../components/signInputItem';
 import RadiusButton from '../../components/radiusButton';
 
-export default class Login extends Component {
+
+class Login extends Component {
     static navigationOptions=({navigation})=>({
         headerTitle:'登录',
         gesturesEnabled:false, //禁止侧滑返回
@@ -76,9 +81,8 @@ export default class Login extends Component {
             console.log('请输入6-18位的密码');
             return
         }
+        this.props.login({phone:this.state.phone,userId:"567",accessToken:'asdfghjkl'})
         console.log('登录');
-        console.log(this.state.password);
-        console.log(this.state.phone)
     }
 }
 
@@ -109,3 +113,8 @@ const styles = StyleSheet.create({
         fontWeight:'bold',
     }
 });
+const mapStateToProps = (state)=>{
+    return state.user
+} //把state.user映射到Home的props属性上面
+const mapDispatchToProps = {login} //把action映射到Home的props属性上面
+export default connect(mapStateToProps,mapDispatchToProps)(Login);

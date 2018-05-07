@@ -6,16 +6,17 @@ import {
     Button
 } from 'react-native';
 
-import Constants from '../../utils/constants';
-import {setToken,getToken,removeToken} from '../../utils/auth';
+import {connect} from 'react-redux';
 
-export default class Home extends Component {
+import Constants from '../../utils/constants';
+class Home extends Component {
 
     static navigationOptions=({navigation})=>({
         headerTitle:'首页',
     })
 
     render(){
+       
         return (
             <View style={styles.container}>
                 <Text 
@@ -24,15 +25,9 @@ export default class Home extends Component {
                 >首页</Text>
                 <Button
                 title="保存"
-                onPress={()=>setToken('测试token存储')}
-                />
-                <Button
-                title='获取Token'
-                onPress = {()=>{token = getToken().then(value=>console.log(value))}}
-                />
-                <Button
-                title='移除Token'
-                onPress={()=>removeToken()}
+                onPress={()=>{
+                    console.log(JSON.stringify(this.props))
+                }}
                 />
             </View>
         )
@@ -55,3 +50,8 @@ const styles = StyleSheet.create({
        color:Constants.color.themeColor
     }
 });
+const mapStateToProps = (state)=>{
+    return state.user
+} //把state.user映射到Home的props属性上面
+const mapDispatchToProps = {} //把action映射到Home的props属性上面
+export default connect(mapStateToProps,mapDispatchToProps)(Home);

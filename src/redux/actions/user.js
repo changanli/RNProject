@@ -4,7 +4,7 @@ import * as types from '../mutation-types';
 
 export function login(data){
     return {
-        types: types.USER_LOGIN,
+        type: types.USER_LOGIN,
         data
     }
 }

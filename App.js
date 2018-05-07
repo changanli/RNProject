@@ -12,7 +12,13 @@ import {
   View,
   StatusBar
 } from 'react-native';
+
+import { Provider } from 'react-redux';
+
 import Router from './src/router'
+import store from './src/redux/index'
+
+
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' +
@@ -26,25 +32,22 @@ export default class App extends Component<Props> {
 
   render() {
 
-    // return (
-    //   <Provider store={store}>
-    //     <AppWithNavigationState />
-    //   </Provider>
-    // );
-
     return (
-      <View style={styles.container}>
-      <StatusBar
-      hidden = {false} //是否隐藏状态栏
-      barStyle = {'light-content'} //状态栏颜色设置为白色，仅支持iOS
-      // backgroundColor={'red'} Android设备上状态栏的背景颜色
-      // translucent={true} 设置状态栏是否为透明。 当状态栏的值为 true 的时候，应用将会在状态栏下面进行绘制显示。这样在 Android 平台上面就是沉浸式的效果，可以达到 Android 和 iOS 应用显示效果的一致性。
-      />
-      <Router />
-      </View>
+      <Provider store={store}>
+        <View style={styles.container}>
+            <StatusBar
+            hidden = {false} //是否隐藏状态栏
+            barStyle = {'light-content'} //状态栏颜色设置为白色，仅支持iOS
+            // backgroundColor={'red'} Android设备上状态栏的背景颜色
+            // translucent={true} 设置状态栏是否为透明。 当状态栏的值为 true 的时候，应用将会在状态栏下面进行绘制显示。这样在 Android 平台上面就是沉浸式的效果，可以达到 Android 和 iOS 应用显示效果的一致性。
+            />
+            <Router />
+          </View>
+        </Provider>
     );
   }
 }
+
 
 const styles = StyleSheet.create({
     container:{
