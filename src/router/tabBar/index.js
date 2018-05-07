@@ -26,6 +26,7 @@ const TabBar = TabNavigator(
    {
       Home:{
         screen:Home,
+        path:'app/Home',
         navigationOptions:({navigation})=>({
           tabBarLabel:'首页',
           tabBarIcon:({focused,tintColor})=>(
@@ -40,6 +41,7 @@ const TabBar = TabNavigator(
       },
       Mine:{
         screen:Mine,
+        path:'app/Mine',
         navigationOptions:({navigation})=>({
           tabBarLabel:'我的',
           tabBarIcon:({focused,tintColor})=>(

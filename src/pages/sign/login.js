@@ -58,6 +58,7 @@ export default class Login extends Component {
            title="登 录"
            viewStyle={styles.viewStyle}
            textStyle={styles.textStyle}
+           onPress={()=>this._login()}
            />
            <Text 
            style={styles.register}

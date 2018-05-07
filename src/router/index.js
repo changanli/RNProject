@@ -6,8 +6,11 @@ import {
   StyleSheet
 } from 'react-native';
 
+import PropTypes from 'prop-types';
 import {StackNavigator,TabNavigator,TabBarBottom} from 'react-navigation';
+
 import Constants from '../utils/constants'
+
 import Home from '../pages/home/index'
 import Boy from '../pages/home/Boy'
 import Mine from '../pages/mine/index'
@@ -57,8 +60,13 @@ const TransitionConfiguration = () => ({
 
 
 const Router = StackNavigator({
-     TabBar:{
-        screen:TabBar
+     Home:{
+        screen:TabBar,
+        path:'app/Home'
+      },
+      Mine:{
+        screen:TabBar,
+        path:'app/Mine'
       },
       FeedBack:{ //反馈意见
         screen:FeedBack
@@ -70,13 +78,14 @@ const Router = StackNavigator({
         screen:Login, //登录
       },
       Register:{
-        screen:Register
+        screen:Register,
       },
       Boy:{
         screen:Boy
       },
   },
   {
+    initialRouteName:'Home', //程序启动后显示的页面
     navigationOptions:{
         headerStyle:{backgroundColor:Constants.color.themeColor}, //统一设置导航栏背景色为红色
         headerTintColor:'white', //统一设置导航栏标题为白色
@@ -88,4 +97,3 @@ const Router = StackNavigator({
 )
 
 export default Router;
-

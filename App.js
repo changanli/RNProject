@@ -14,7 +14,6 @@ import {
 } from 'react-native';
 import Router from './src/router'
 
-
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' +
     'Cmd+D or shake for dev menu',
@@ -26,6 +25,13 @@ type Props = {};
 export default class App extends Component<Props> {
 
   render() {
+
+    // return (
+    //   <Provider store={store}>
+    //     <AppWithNavigationState />
+    //   </Provider>
+    // );
+
     return (
       <View style={styles.container}>
       <StatusBar
