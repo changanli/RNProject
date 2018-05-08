@@ -10,9 +10,9 @@ import {getItem,setItem,remvoeItem, removeItem,multiGet} from '../../utils/stora
     那么存在本地或者服务器，这样每次刷新页面都要读取本地缓存或者服务端API,然后保存到store,在从store去读取到组件
 */
 const initState = () => ({
-    userId:'',
-    phone:'',
-    accessToken:'',
+    userId:null,
+    phone:null,
+    accessToken:null,
 })
 
 export default function user(state = initState(), action) {

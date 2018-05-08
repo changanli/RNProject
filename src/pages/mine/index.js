@@ -8,12 +8,15 @@ import {
     TouchableHighlight
 } from 'react-native';
 
+import {connect} from 'react-redux';
+import {loginOut} from '../../redux/actions/user';
+
 import Constants from '../../utils/constants';
 import ListItemArrow from '../../components/listItemArrow';
 import ListItemInfo from '../../components/listItemInfo';
 
 const dataSource = []
-export default class Mine extends Component {
+class Mine extends Component {
 
     static navigationOptions=({navigation})=>({
         title:'我的',
@@ -31,6 +34,7 @@ export default class Mine extends Component {
                 {key:'0',title:'联系我们',routeName:'FeedBack',image:require('../../static/images/my_feedback_28x28_.png')},
                 {key:'1',title:'清理缓存',routeName:'',image:require('../../static/images/my_cache_28x28_.png')},
                 {key:'2',title:'关于',routeName:'About',image:require('../../static/images/my_about_28x28_.png')},
+                {key:'3',title:'退出登录',routeName:'',image:require('../../static/images/my_about_28x28_.png')}
             ],
         }
     ]
@@ -62,7 +66,16 @@ export default class Mine extends Component {
                 style={{marginBottom:10}}
                 title={info.item.title}
                 leftImage={info.item.image}
-                onPress={()=>this.props.navigation.navigate(info.item.routeName,{mode:'card'})} 
+                //
+                onPress={()=> {
+                    if(info.item.key == '3'){
+                        const {loginOut} = this.props;
+                        loginOut()
+                        alert('退出登录成功');
+                    }else{
+                        this.props.navigation.navigate(info.item.routeName,{mode:'card'})
+                    }
+                }} 
         />)
     }
 }
@@ -83,4 +96,9 @@ const styles = StyleSheet.create({
         width: Constants.screen.width
     }
 });
-
+const mapDispatchToState=(dispatch)=>{
+    return {
+        loginOut:()=>dispatch(loginOut())
+    }
+}
+export default connect(state=>state.user,mapDispatchToState)(Mine);
