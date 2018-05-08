@@ -17,6 +17,7 @@ import { Provider } from 'react-redux';
 
 import Router from './src/router'
 import store from './src/redux/index'
+import {getItem} from './src/utils/storage'
 
 
 
@@ -30,8 +31,10 @@ const instructions = Platform.select({
 type Props = {};
 export default class App extends Component<Props> {
 
-  render() {
+  componentWillMount(){
 
+  }
+  render() {
     return (
       <Provider store={store}>
         <View style={styles.container}>
@@ -45,6 +48,10 @@ export default class App extends Component<Props> {
           </View>
         </Provider>
     );
+  }
+
+  componentDidMount(){
+   
   }
 }
 

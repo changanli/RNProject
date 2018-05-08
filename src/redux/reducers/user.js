@@ -26,8 +26,7 @@ export default function user(state = initState(), action) {
             } = action.data
             setItem(types.USER_PHONE,phone)
             setItem(types.USER_ID,userId )
-            setItem(types.ACESSTOKEN,accessToken)
-            // return initState();
+            setItem(types.ACCESSTOKEN,accessToken)
             return {phone,accessToken,userId}
         }
         case types.USER_REGISTER:
@@ -35,19 +34,19 @@ export default function user(state = initState(), action) {
             const {phone,accessToken,userId} = action.data;
             setItem(types.USER_PHONE,phone)
             setItem(types.USER_ID,userId)
-            setItem(types.ACESSTOKEN,accessToken)
-            return initState()
+            setItem(types.ACCESSTOKEN,accessToken)
+            return {phone,accessToken,userId}
         }
         case types.USER_RESET_PASSWORD:
         {
             const {phone,accessToken,userId} = action.data;
             setItem(types.USER_PHONE,phone)
             setItem(types.USER_ID,userId)
-            setItem(types.ACESSTOKEN,accessToken)
+            setItem(types.ACCESSTOKEN,accessToken)
             return initState()
         }
         case types.USER_LOGIN_OUT:
-            removeItem(types.ACESSTOKEN)
+            removeItem(types.ACCESSTOKEN)
             removeItem(types.USER_ID)
             return initState();
         default:

@@ -1,5 +1,6 @@
 import * as types from '../mutation-types';
-
+import {post,get} from '../../utils/doFetch';
+import {getItem} from '../../utils/storage';
 // Action Creator
 
 export function login(data){

@@ -7,12 +7,14 @@ import {
 } from 'react-native';
 
 import {connect} from 'react-redux';
+import {getItem} from '../../utils/storage';
 
 import Constants from '../../utils/constants';
 class Home extends Component {
 
     static navigationOptions=({navigation})=>({
         headerTitle:'首页',
+        headerLeft:null
     })
 
     render(){
@@ -26,7 +28,9 @@ class Home extends Component {
                 <Button
                 title="保存"
                 onPress={()=>{
-                    console.log(JSON.stringify(this.props))
+                    getItem('ACCESSTOKEN').then(value=>{
+                        console.log(value);
+                    })
                 }}
                 />
             </View>

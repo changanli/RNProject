@@ -60,7 +60,7 @@ const TransitionConfiguration = () => ({
 
 
 const Router = StackNavigator({
-     Home:{
+      Home:{
         screen:TabBar,
         path:'app/Home'
       },

@@ -10,17 +10,17 @@ import {
 
 import {NavigationActions} from 'react-navigation';
 
+import {connect} from 'react-redux';
+import {register} from '../../redux/actions/user';
 import Constants from '../../utils/constants';
 import RadiusButton from '../../components/radiusButton';
 import Service from '../../utils/doFetch';
 
 let timer = null;
-export default class Register extends Component {
+class Register extends Component {
     static navigationOptions=({navigation})=>({
         headerTitle:'注册',
-
     })
-  
 
     constructor(props){
         super(props)
@@ -79,6 +79,7 @@ export default class Register extends Component {
                     autoFocus = {true} //在componentDidMount后会获得焦点
                     clearButtonMode = {"while-editing"} //是否要在文本框右侧显示“清除”按钮。ios属性
                     onChangeText={(text)=>this.setState({...this.state,password:text})}
+                    secureTextEntry={true}
                     />
                 </View>
                 <View style={styles.inputItem}>
@@ -91,6 +92,7 @@ export default class Register extends Component {
                     autoFocus = {true} //在componentDidMount后会获得焦点
                     clearButtonMode = {"while-editing"} //是否要在文本框右侧显示“清除”按钮。ios属性
                     onChangeText={(text)=>this.setState({...this.state,repeatPwd:text})}
+                    secureTextEntry={true}
                     />
                 </View>
             </View>
@@ -136,21 +138,20 @@ export default class Register extends Component {
             console.log('两次输入的密码不一致');
             return
         }
-        console.log('phone:'+this.state.phone)
-        console.log('yanzhengma:'+this.state.password)
-        console.log('password:'+this.state.password)
-        console.log('repeatPwd:'+this.state.repeatPwd)
-        console.log(JSON.stringify(this.props.navigation))
-        this.props.navigation.goBack()
-        // Service.post('/user/register',{
-        //     phone:this.state.phone,
-        //     password:this.state.password
-        // }).then((response)=>{
-        //     console.log(JSON.stringify(response));
-
-        // }).catch((error)=>{
-        //     console.log(error)
-        // })
+        const {register} = this.props
+        global.post('/user/register',{
+            phone:this.state.phone,
+            password:this.state.password
+        }).then(response=>{
+            register(response.data);   
+            const resetActions = NavigationActions.reset({
+                index:0,
+                actions:[NavigationActions.navigate({routeName:'Mine',})]
+            });
+            this.props.navigation.dispatch(resetActions);         
+        }).catch(error=>{
+            console.log(error);
+        })
     }
     _getYanZhenMa(){
       
@@ -230,3 +231,14 @@ const styles = StyleSheet.create({
        
     }
 })
+
+const mapSateToProps=(state)=>{
+    return state.user
+}
+
+const mapDispatchToProps=(dispatch)=>{
+    return {
+        register:(data)=>dispatch(register(data))
+    }
+}
+export default connect(mapSateToProps,mapDispatchToProps)(Register);

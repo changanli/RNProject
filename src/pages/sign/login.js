@@ -11,8 +11,6 @@ import {
 
 import {connect} from 'react-redux';
 import {login} from '../../redux/actions/user';
-
-import {register} from '../../redux/actions/user';
 import Constants from '../../utils/constants';
 import SignInputItem from '../../components/signInputItem';
 import RadiusButton from '../../components/radiusButton';
@@ -51,7 +49,7 @@ class Login extends Component {
             />
             <SignInputItem
              leftImage = {require('../../static/images/pass.png')}
-             placeholder="请输入验证码"
+             placeholder="请输入密码"
              maxLength={18}
              autoCorrect={false} 
              autoFocus={true}
@@ -81,7 +79,17 @@ class Login extends Component {
             console.log('请输入6-18位的密码');
             return
         }
-        this.props.login({phone:this.state.phone,userId:"567",accessToken:'asdfghjkl'})
+        const {login} = this.props
+
+        global.post('/user/login',{
+            phone:this.state.phone,
+            password:this.state.password
+        }).then(response=>{
+            login(response.data)
+            this.props.navigation.goBack()
+        }).catch(error=>{
+            console.log(error)
+        })
         console.log('登录');
     }
 }
@@ -116,5 +124,9 @@ const styles = StyleSheet.create({
 const mapStateToProps = (state)=>{
     return state.user
 } //把state.user映射到Home的props属性上面
-const mapDispatchToProps = {login} //把action映射到Home的props属性上面
+const mapDispatchToProps = (dispatch,ownProps)=>{
+    return {
+        login:(data)=>dispatch(login(data))
+    }
+} //把action映射到Home的props属性上面
 export default connect(mapStateToProps,mapDispatchToProps)(Login);

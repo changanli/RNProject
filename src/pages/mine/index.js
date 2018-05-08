@@ -17,7 +17,7 @@ export default class Mine extends Component {
 
     static navigationOptions=({navigation})=>({
         title:'我的',
-        titleStyle:{color:'red'},
+        headerLeft:null
     })
     _sections=[
         {
